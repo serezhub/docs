@@ -1,6 +1,6 @@
 ﻿# Cluster Dashboard: Customize
 ---
-This is a random change
+This is a random change 2
 {NOTE: }
 
 Customize the cluster dashboard according to your needs by:  
