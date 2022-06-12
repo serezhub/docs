@@ -517,9 +517,9 @@ function deleteDocumentsOf<CollectionName>Behavior(docId, deleted) {
     // If any document in the specified source collection is modified but is not deleted,  
     // then the ETL will not send a delete command to the destination, thus saving a history of it.  
     if (deleted == false) 
-    return false; 
+        return false; 
     // If the source document was deleted, the destination will also be deleted 
-    // including all of it's version history. 
+    // including all of its version history. 
     else return true;
 }
 {CODE-BLOCK/}
@@ -568,11 +568,11 @@ function deleteDocumentsBehavior(docId, collection, deleted) {
 }
 {CODE-BLOCK/}
 
-| Parameter | Type | Description |
-| - | - | - |
-| **docId** | `string` | The identifier of a deleted document. |
+| Parameter | Type | Description | Notes |
+| - | - | - | - |
+| **docId** | `string` | The identifier of a modified or deleted document. |
 | **collection** | `string` | The name of a collection. |
-| **deleted** | `bool` | Optional and therefore doesn't affect existing code. If you don't include the `deleted` parameter, RavenDB will execute the function without checking if the document was deleted from the source database. <br/> If you include `deleted`, RavenDB will check if the document was indeed deleted or just updated. 
+| **deleted** | `bool` | If you don't include the `deleted` parameter, RavenDB will execute the function without checking if the document was deleted from the source database. <br/> If you include `deleted`, RavenDB will check if the document was indeed deleted or just updated. | Optional |
 
 | Return Value | Description |
 | - | - |
@@ -640,11 +640,11 @@ function deleteDocumentsBehavior(docId, collection, deleted) {
 }
 {CODE-BLOCK/}
 
-| Parameter | Type | Description |
-| - | - | - |
+| Parameter | Type | Description | Notes |
+| - | - | - | - |
 | **docId** | `string` | The identifier of a deleted document. |
 | **collection** | `string` | The name of a collection. |
-| **deleted** | `bool` | Optional and therefore doesn't affect existing code. If you don't include the `deleted` parameter, RavenDB will execute the function without checking if the document was deleted from the source database. <br/> If you include `deleted`, RavenDB will check if the document was indeed deleted or just updated.  If you set `return true` and the document was deleted in the source database, it will also delete the document in the destination database.  |
+| **deleted** | `bool` | If you don't include the `deleted` parameter, RavenDB will execute the function without checking if the document was deleted from the source database. <br/> If you include `deleted`, RavenDB will check if the document was indeed deleted or just updated. | Optional |
 
 | Return | Description |
 | - | - |
