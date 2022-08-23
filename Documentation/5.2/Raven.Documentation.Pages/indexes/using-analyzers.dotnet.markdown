@@ -55,17 +55,21 @@ or use an [analyzer that doesn't remove stop words](../indexes/using-analyzers#a
     `[quick]   [brown]   [fox]   [jumped]   [over]   [lazy]   [dog]   [bob@hotmail.com]   [123432]`  
 
     Removes common "stop" words  
-    Separates with white spaces  
+    Separates with white spaces and punctuation that is followed by white space  
     Converts to lower-case letters so that searches aren't case sensitive  
+    Email addresses are one token - a dot that is not followed by a whitespace is considered part of the token.  
+    Numbers with hyphen/dash are not separated at the hyphen.  
+
 
 * **StopAnalyzer** will work similarly, but will not perform light stemming and will only tokenize on white space:  
 
     `[quick]   [brown]   [fox]   [jumped]   [over]   [lazy]   [dogs]   [bob]   [hotmail]   [com]`  
 
-    Removes numbers and symbols then separates tokens with these  
+    Removes numbers and symbols, then separates tokens with these. 
+    This means that email and web addresses are separated.  
     Removes common "stop" words  
     Separates with white spaces  
-    Converts to lower-case letters  
+    Converts to lower-case letters so that searches aren't case sensitive  
 
 ---
 
@@ -76,22 +80,24 @@ or use an [analyzer that doesn't remove stop words](../indexes/using-analyzers#a
     `[the]   [quick]   [brown]   [fox]   [jumped]   [over]   [the]   [lazy]   [dogs]   [bob]   [hotmail]   [com]`  
 
     Includes common stop words  
-    Removes numbers and symbols then separates tokens with them  
+    Removes numbers and symbols, then separates tokens with them. 
+    This means that email and web addresses are separated.  
     Separates with white spaces  
-    Converts to lower-case letters so that searches aren't case sensitive 
+    Converts to lower-case letters so that searches aren't case sensitive  
 
 * **WhitespaceAnalyzer** will just tokenize on white spaces:  
 
     `[The]   [quick]   [brown]   [fox]   [jumped]   [over]   [the]   [lazy]   [dogs,]   [Bob@hotmail.com]   [123432.]`  
 
     Only separates with whitespaces  
-    This analyzer preserves upper/lower cases in text, which means that searches will be case-sensitive.
+    This analyzer preserves upper/lower cases in text, which means that searches will be case-sensitive.  
+    Email and web addresses, phone numbers, and other such forms of ID are kept whole
 
 * **KeywordAnalyzer** will perform no tokenization, and will consider the whole text a stream as one token:  
 
     `[The quick brown fox jumped over the lazy dogs, bob@hotmail.com 123432.]`  
 
-    This analyzer preserves upper/lower cases in text for case-sensitive searches.
+    This analyzer preserves upper/lower cases in text for case-sensitive searches.  
     Useful in situations like IDs and codes where you do not want to separate into multiple tokens.  
 
 ---
